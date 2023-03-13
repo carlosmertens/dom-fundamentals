@@ -117,3 +117,10 @@ h1 {
 .label-score {
   margin-bottom: 2rem;
 }
+
+.exit {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 8rem;
+  color: #eee;
+}
