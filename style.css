@@ -41,14 +41,21 @@ h1 {
   margin-bottom: 5rem;
 }
 
-.choices-box {
+/* .choices-box {
   display: flex;
   flex-direction: column;
+} */
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-top: 3rem;
 }
 
 .choices-link {
   text-decoration: none;
   color: whitesmoke;
   font-size: 3rem;
-  margin: 2rem;
 }
