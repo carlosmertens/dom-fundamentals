@@ -19,7 +19,7 @@ Learn JS with Jonas Schmedtmann course
 Learning curve for this project:
 
 - Manipulate elements content in the DOM
--
+- Handle events in the DOM
 
 ### Modal Window (Component)
 
