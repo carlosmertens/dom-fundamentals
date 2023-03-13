@@ -43,10 +43,15 @@ document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
 
   if (!guess) {
+    // No guess number provided
     document.querySelector('.message').textContent = noNumberMsg;
   } else if (guess === number && score > 0) {
+    // Guest wins
     document.querySelector('.message').textContent = winMsg;
+    document.querySelector('body').style.backgroundColor = '#32bf07';
+    document.querySelector('.number').style.width = '30rem';
   } else if (guess > number) {
+    // Too hight
     score--;
     if (score < 1) {
       document.querySelector('.message').textContent = lostMsg;
@@ -56,6 +61,7 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.score').textContent = score;
     }
   } else {
+    // Too low
     score--;
     if (score < 1) {
       document.querySelector('.message').textContent = lostMsg;
