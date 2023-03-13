@@ -25,6 +25,7 @@ document.querySelector('.check').addEventListener('click', function () {
 // ///////// IMPLEMENTING THE GAME LOGIC
 
 // Messages
+const initMsg = '🏁 Start guessing...';
 const winMsg = '🎉 You guessed it!';
 const noNumberMsg = '🚫 No number!';
 const lostMsg = '😿 You lost the game!';
@@ -32,8 +33,7 @@ const highMsg = '📈 Too high!';
 const lowMsg = '📉 Too Low!';
 
 // Set random secret number
-const number = Math.trunc(Math.random() * 20 + 1);
-document.querySelector('.number').textContent = number; // Hide later
+let number = Math.trunc(Math.random() * 20 + 1);
 
 // Initiate score
 let score = Number(document.querySelector('.score').textContent);
@@ -47,6 +47,7 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.message').textContent = noNumberMsg;
   } else if (guess === number && score > 0) {
     // Guest wins
+    document.querySelector('.number').textContent = number;
     document.querySelector('.message').textContent = winMsg;
     document.querySelector('body').style.backgroundColor = '#32bf07';
     document.querySelector('.number').style.width = '30rem';
@@ -71,4 +72,21 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.score').textContent = score;
     }
   }
+});
+
+// Handle again button event (reset states to the beginning)
+document.querySelector('.again').addEventListener('click', function () {
+  number = Math.trunc(Math.random() * 20 + 1);
+  score = 20;
+
+  document.querySelector('.number').textContent = '?';
+
+  document.querySelector('.message').textContent = initMsg;
+
+  document.querySelector('.score').textContent = score;
+
+  document.querySelector('.guess').value = '';
+
+  document.querySelector('body').style.backgroundColor = '#311a1a';
+  document.querySelector('.number').style.width = '15rem';
 });
