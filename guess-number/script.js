@@ -33,11 +33,23 @@ const highMsg = '📈 Too high!';
 const lowMsg = '📉 Too Low!';
 
 // Set random secret number, score and highscore
-let number = Math.trunc(Math.random() * 20 + 1);
-document.querySelector('.number').textContent = number;
+let number = getNumber();
 let score = Number(document.querySelector('.score').textContent);
 let highScore = Number(document.querySelector('.highscore').textContent);
 let gameOver = false;
+
+function setMessage(msg) {
+  document.querySelector('.message').textContent = msg;
+}
+
+function getNumber() {
+  return Math.trunc(Math.random() * 20 + 1);
+}
+
+function changeBackground(bodyColor, boxWidth) {
+  document.querySelector('body').style.backgroundColor = bodyColor;
+  document.querySelector('.number').style.width = boxWidth;
+}
 
 // Handle check button event
 document.querySelector('.check').addEventListener('click', function () {
@@ -45,25 +57,23 @@ document.querySelector('.check').addEventListener('click', function () {
     const guess = Number(document.querySelector('.guess').value);
 
     if (guess < 1 || guess > 20) {
-      document.querySelector('.message').textContent = noNumberMsg;
+      setMessage(noNumberMsg);
     } else if (guess === number) {
       if (score > highScore) highScore = score;
       document.querySelector('.highscore').textContent = highScore;
       document.querySelector('.number').textContent = number;
-      document.querySelector('.message').textContent = winMsg;
-      document.querySelector('body').style.backgroundColor = '#32bf07';
-      document.querySelector('.number').style.width = '30rem';
+      setMessage(winMsg);
+      changeBackground('#32bf07', '30rem');
       gameOver = true;
     } else if (guess !== number) {
       score--;
 
       if (score < 1) {
-        document.querySelector('.message').textContent = lostMsg;
+        setMessage(lostMsg);
         document.querySelector('.score').textContent = 0;
         gameOver = true;
       } else {
-        document.querySelector('.message').textContent =
-          guess > number ? highMsg : lowMsg;
+        setMessage(guess > number ? highMsg : lowMsg);
         document.querySelector('.score').textContent = score;
       }
     }
@@ -72,18 +82,13 @@ document.querySelector('.check').addEventListener('click', function () {
 
 // Handle again button event (reset states to the beginning)
 document.querySelector('.again').addEventListener('click', function () {
-  number = Math.trunc(Math.random() * 20 + 1);
+  number = getNumber();
   score = 20;
   gameOver = false;
 
   document.querySelector('.number').textContent = '?';
-
-  document.querySelector('.message').textContent = initMsg;
-
+  setMessage(initMsg);
   document.querySelector('.score').textContent = score;
-
   document.querySelector('.guess').value = '';
-
-  document.querySelector('body').style.backgroundColor = '#311a1a';
-  document.querySelector('.number').style.width = '15rem';
+  changeBackground('#311a1a', '15rem');
 });
