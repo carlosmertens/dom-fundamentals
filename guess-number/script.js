@@ -32,11 +32,10 @@ const lostMsg = '😿 You lost the game!';
 const highMsg = '📈 Too high!';
 const lowMsg = '📉 Too Low!';
 
-// Set random secret number
+// Set random secret number, score and highscore
 let number = Math.trunc(Math.random() * 20 + 1);
-
-// Initiate score
 let score = Number(document.querySelector('.score').textContent);
+let highScore = Number(document.querySelector('.highscore').textContent);
 
 // Handle check button event
 document.querySelector('.check').addEventListener('click', function () {
@@ -47,6 +46,8 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.message').textContent = noNumberMsg;
   } else if (guess === number && score > 0) {
     // Guest wins
+    if (score > highScore) highScore = score;
+    document.querySelector('.highscore').textContent = highScore;
     document.querySelector('.number').textContent = number;
     document.querySelector('.message').textContent = winMsg;
     document.querySelector('body').style.backgroundColor = '#32bf07';
