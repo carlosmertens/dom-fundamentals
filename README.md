@@ -25,8 +25,9 @@ Learning curve for this project:
 
 Learning curve for this project:
 
--
--
+- Work with variables and functions
+- Manipulate classes with classList
+- Work with keypress events
 
 ### Pig Game (Game)
 
