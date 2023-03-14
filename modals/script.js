@@ -23,3 +23,8 @@ overlay.addEventListener('click', hideModal);
 for (let i = 0; i < showModel.length; i++) {
   showModel[i].addEventListener('click', openModel);
 }
+
+// Keypress event (keydown, keypress and keyup)
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) hideModal();
+});
