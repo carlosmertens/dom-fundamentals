@@ -14,7 +14,13 @@ html {
 
 body {
   box-sizing: border-box;
-  background: linear-gradient(to top left, #287ab4, #6f80d5);
+  /* background: linear-gradient(to top left, #287ab4, #6f80d5); */
+  background: linear-gradient(
+    125.7deg,
+    #0023da 0.64%,
+    #e4317c 59.22%,
+    #ebff00 114.62%
+  );
   overflow-x: hidden;
 }
 
