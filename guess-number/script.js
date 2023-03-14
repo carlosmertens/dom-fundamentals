@@ -63,7 +63,7 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.highscore').textContent = highScore;
       document.querySelector('.number').textContent = number;
       setMessage(winMsg);
-      changeBackground('#32bf07', '30rem');
+      changeBackground('#3EDA79', '30rem');
       gameOver = true;
     } else if (guess !== number) {
       score--;
@@ -71,6 +71,7 @@ document.querySelector('.check').addEventListener('click', function () {
       if (score < 1) {
         setMessage(lostMsg);
         document.querySelector('.score').textContent = 0;
+        changeBackground('#F93E3B', '25rem');
         gameOver = true;
       } else {
         setMessage(guess > number ? highMsg : lowMsg);
@@ -90,5 +91,5 @@ document.querySelector('.again').addEventListener('click', function () {
   setMessage(initMsg);
   document.querySelector('.score').textContent = score;
   document.querySelector('.guess').value = '';
-  changeBackground('#311a1a', '15rem');
+  changeBackground('#270245', '15rem');
 });
