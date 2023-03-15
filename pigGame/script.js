@@ -17,10 +17,21 @@ let current = 0;
 let player = 0;
 let playing = true;
 
-// INITIAL SATES
-elmScore0.textContent = 0;
-elmScore1.textContent = 0;
-elmDice.classList.add('hidden');
+function getDice() {
+  const dice = Math.trunc(Math.random() * 6 + 1);
+  elmDice.src = `/pigGame/img/dice-${dice}.png`;
+  elmDice.classList.remove('hidden');
+
+  return dice;
+}
+
+function switchPlayer() {
+  current = 0;
+  document.getElementById(`current--${player}`).textContent = 0;
+  player = player === 0 ? 1 : 0;
+  document.querySelector('.player--0').classList.toggle('player--active');
+  document.querySelector('.player--1').classList.toggle('player--active');
+}
 
 // HANDLE ROLL DICE BUTTON
 btnRoll.addEventListener('click', function () {
@@ -56,38 +67,23 @@ btnHold.addEventListener('click', function () {
 });
 
 // HANDLE NEW GAME BUTTON
-btnNew.addEventListener('click', initialState);
-
-function getDice() {
-  const dice = Math.trunc(Math.random() * 6 + 1);
-  elmDice.src = `/pigGame/img/dice-${dice}.png`;
-  elmDice.classList.remove('hidden');
-
-  return dice;
-}
-
-function switchPlayer() {
-  current = 0;
-  document.getElementById(`current--${player}`).textContent = 0;
-  player = player === 0 ? 1 : 0;
-  document.querySelector('.player--0').classList.toggle('player--active');
-  document.querySelector('.player--1').classList.toggle('player--active');
-}
-
-function initialState() {
-  document
-    .querySelector(`.player--${player}`)
-    .classList.remove('player--winner');
-  playing = true;
-  scores[0] = 0;
-  scores[1] = 0;
-  current = 0;
-  player = 0;
+btnNew.addEventListener('click', function () {
   elmScore0.textContent = 0;
   elmScore1.textContent = 0;
   elmCurrent0.textContent = 0;
   elmCurrent1.textContent = 0;
   elmDice.classList.add('hidden');
+
   document.querySelector('.player--0').classList.add('player--active');
   document.querySelector('.player--1').classList.remove('player--active');
-}
+
+  document
+    .querySelector(`.player--${player}`)
+    .classList.remove('player--winner');
+
+  scores[0] = 0;
+  scores[1] = 0;
+  current = 0;
+  player = 0;
+  playing = true;
+});

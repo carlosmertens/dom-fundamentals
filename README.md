@@ -33,8 +33,7 @@ Learning curve for this project:
 
 Learning curve for this project:
 
--
--
+- Apply knowledge in deep
 
 ## Instructor
 
