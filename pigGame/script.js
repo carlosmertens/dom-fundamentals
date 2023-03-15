@@ -1,44 +1,52 @@
 'use strict';
 
-// DOM elements variables
-const score0 = document.getElementById('score--0');
-const score1 = document.getElementById('score--1');
-const dice = document.querySelector('.dice');
+const elmScore0 = document.getElementById('score--0');
+const elmScore1 = document.getElementById('score--1');
+const elmCurrent0 = document.getElementById('current--0');
+const elmCurrent1 = document.getElementById('current--1');
 
-const current0 = document.getElementById('current--0');
-const current1 = document.getElementById('current--1');
+const elmDice = document.querySelector('.dice');
 
 const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
-// Logig flow variables
-let currentDice = 0;
+let currentScore = 0;
 
-// Initial states
-function initialState() {
-  score0.textContent = 0;
-  score1.textContent = 0;
-  dice.classList.add('hidden');
-  current0.textContent = 0;
-  current1.textContent = 0;
-}
-initialState();
+// INITIAL SATES
+elmScore0.textContent = 0;
+elmScore1.textContent = 0;
+elmDice.classList.add('hidden');
 
-function rollDice() {
-  return Math.trunc(Math.random() * 6 + 1);
-}
-
-// Handle New Game button
+// HANDLE NEW GAME BUTTON
 btnNew.addEventListener('click', initialState);
 
-// Handle Roll Dice button
+// HANDLE ROLL DICE BUTTON
 btnRoll.addEventListener('click', function () {
-  currentDice = rollDice();
-  current0.textContent = currentDice + Number(current0.textContent);
+  const dice = Math.trunc(Math.random() * 6 + 1);
+  elmDice.classList.remove('hidden');
+  elmDice.src = `/pigGame/img/dice-${dice}.png`;
+
+  if (dice !== 1) {
+    currentScore += dice;
+    elmCurrent0.textContent = currentScore;
+  } else {
+    // Change player
+    console.log('Change player');
+    elmCurrent0.textContent = 0;
+  }
 });
 
-// handle Hold button
+// HANDLE HOLD BUTTON
 btnHold.addEventListener('click', function () {
   // TODO
 });
+
+function initialState() {
+  elmScore0.textContent = 0;
+  elmScore1.textContent = 0;
+  elmDice.classList.add('hidden');
+  elmCurrent0.textContent = 0;
+  elmCurrent1.textContent = 0;
+  currentScore = 0;
+}
